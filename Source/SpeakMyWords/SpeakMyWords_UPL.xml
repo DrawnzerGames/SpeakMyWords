@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright(c) 2017 DRAWNZER GAMES -> ANURAG
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+
+              coolanuragdzxj@gmail.com
+-->
+
+<root xmlns:android="http://schemas.android.com/apk/res/android">
+	<init>
+		<log text="Speak My Words Unreal Engine 4 Plugin...."/>
+	</init>
+
+	
+  <androidManifestUpdates>
+    
+	</androidManifestUpdates>
+
+	<gameActivityImportAdditions>
+		<insert>
+      import android.speech.tts.TextToSpeech;
+      import java.util.Locale;
+    </insert>
+	</gameActivityImportAdditions>
+
+	<gameActivityClassAdditions>
+	  <insert>
+      private TextToSpeech tts;
+      private boolean ttsInited;
+
+
+      public void AndroidThunkJava_InitTTS(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tts = new TextToSpeech(_activity, new TextToSpeech.OnInitListener() {
+                    @Override
+                    public void onInit(int status) {
+                        ttsInited = true;
+                        android.util.Log.d("SPEAK_MY_WORDS", "Init Result = " + ttsInited);
+                    }
+                });
+            }
+        });
+      }
+      
+      
+    public void AndroidThunkJava_SpeakThisSentence(String sentence){
+        final String str = sentence;        
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {              
+              if(!ttsInited){
+                      android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE RETURNED");
+                      return;
+              }
+              tts.speak(str ,TextToSpeech.QUEUE_FLUSH, null);
+              android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE SPEAKING");
+            }
+        });
+    }
+
+    public void AndroidThunkJava_SetPitch(float pitch){
+        if(!ttsInited){
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH RETURNED");
+            return;
+        }
+        tts.setPitch(pitch);
+        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH SET");
+    }
+
+    public void AndroidThunkJava_SetSpeechRate(float rate){
+        tts.setSpeechRate(rate);
+        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET RATE SET");
+    }
+
+    public boolean AndroidThunkJava_IsSpeaking(){
+        if(!ttsInited){
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING ISSPEAKING RETURNED");
+            return false;
+        }
+        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING CURRENTLY SPEAKING");
+        return tts.isSpeaking();
+    }
+
+    public void AndroidThunkJava_SetDefaultLauguage(){
+        if(!ttsInited){
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET LANGUAGE RETURNED");
+            return;
+        }
+        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING LANGUAGE SET");
+        tts.setLanguage(Locale.getDefault());
+    }
+    
+    public boolean AndroidThunkJava_IsSpeakingInitialized(){
+        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING INIT RESULT = " + ttsInited);
+        return ttsInited;
+    }
+      
+      
+    </insert>
+	</gameActivityClassAdditions>
+
+	<gameActivityOnPauseAdditions>
+		<insert>
+			
+		</insert>
+	</gameActivityOnPauseAdditions>
+	
+	<gameActivityOnStartAdditions>
+		<insert>
+	
+    </insert>>
+	</gameActivityOnStartAdditions>>
+
+	<gameActivityOnResumeAdditions>
+		<insert>
+		
+    </insert>
+	</gameActivityOnResumeAdditions>
+
+	<gameActivityOnDestroyAdditions>
+		<insert>
+		
+    </insert>
+	</gameActivityOnDestroyAdditions>
+</root>
