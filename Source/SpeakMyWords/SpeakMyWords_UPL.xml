@@ -36,77 +36,86 @@
 
 	<gameActivityClassAdditions>
 	  <insert>
-      private TextToSpeech tts;
-      private boolean ttsInited;
+        /** The instance of Text To Speech, which is responsible for speaking. */    
+        private TextToSpeech tts;
+        
+        /** Is true if the text to speech instance is successfully initialized. */
+        private boolean ttsInited;
 
 
-      public void AndroidThunkJava_InitTTS(){
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                tts = new TextToSpeech(_activity, new TextToSpeech.OnInitListener() {
-                    @Override
-                    public void onInit(int status) {
-                        ttsInited = true;
-                        android.util.Log.d("SPEAK_MY_WORDS", "Init Result = " + ttsInited);
-                    }
-                });
-            }
-        });
-      }
+        /** The method to initialise the text to speech instance. */
+        public void AndroidThunkJava_InitTTS(){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    tts = new TextToSpeech(_activity, new TextToSpeech.OnInitListener() {
+                        @Override
+                        public void onInit(int status) {
+                            ttsInited = true;
+                            android.util.Log.d("SPEAK_MY_WORDS", "Init Result = " + ttsInited);
+                        }
+                    });
+                }
+            });
+        }
       
-      
-    public void AndroidThunkJava_SpeakThisSentence(String sentence){
-        final String str = sentence;        
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {              
-              if(!ttsInited){
-                      android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE RETURNED");
-                      return;
-              }
-              tts.speak(str ,TextToSpeech.QUEUE_FLUSH, null);
-              android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE SPEAKING");
+        /** The method to speak the the sentence. */
+        public void AndroidThunkJava_SpeakThisSentence(String sentence){
+            final String str = sentence;        
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {              
+                if(!ttsInited){
+                        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE RETURNED");
+                        return;
+                }
+                tts.speak(str ,TextToSpeech.QUEUE_FLUSH, null);
+                android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SENTENCE SPEAKING");
+                }
+            });
+        }
+
+        /** The method to set the pitch of the text to speech instance. */
+        public void AndroidThunkJava_SetPitch(float pitch){
+            if(!ttsInited){
+                android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH RETURNED");
+                return;
             }
-        });
-    }
-
-    public void AndroidThunkJava_SetPitch(float pitch){
-        if(!ttsInited){
-            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH RETURNED");
-            return;
+            tts.setPitch(pitch);
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH SET");
         }
-        tts.setPitch(pitch);
-        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET PITCH SET");
-    }
 
-    public void AndroidThunkJava_SetSpeechRate(float rate){
-        tts.setSpeechRate(rate);
-        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET RATE SET");
-    }
-
-    public boolean AndroidThunkJava_IsSpeaking(){
-        if(!ttsInited){
-            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING ISSPEAKING RETURNED");
-            return false;
+        /** The method to set then speech rate. */
+        public void AndroidThunkJava_SetSpeechRate(float rate){
+            tts.setSpeechRate(rate);
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET RATE SET");
         }
-        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING CURRENTLY SPEAKING");
-        return tts.isSpeaking();
-    }
 
-    public void AndroidThunkJava_SetDefaultLauguage(){
-        if(!ttsInited){
-            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET LANGUAGE RETURNED");
-            return;
+        /** The method to know whether it's currently speaking or not. */
+        public boolean AndroidThunkJava_IsSpeaking(){
+            if(!ttsInited){
+                android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING ISSPEAKING RETURNED");
+                return false;
+            }
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING CURRENTLY SPEAKING");
+            return tts.isSpeaking();
         }
-        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING LANGUAGE SET");
-        tts.setLanguage(Locale.getDefault());
-    }
-    
-    public boolean AndroidThunkJava_IsSpeakingInitialized(){
-        android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING INIT RESULT = " + ttsInited);
-        return ttsInited;
-    }
+
+        /** The method to set the speaking language to the device's default language. */
+        public void AndroidThunkJava_SetDefaultLauguage(){
+            if(!ttsInited){
+                android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING SET LANGUAGE RETURNED");
+                return;
+            }
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING LANGUAGE SET");
+            tts.setLanguage(Locale.getDefault());
+        }
+        
+        /** The method to know whether the text to speech instance is initialized or not. */
+        public boolean AndroidThunkJava_IsSpeakingInitialized(){
+            android.util.Log.d("SPEAK_MY_WORDS", "SPEAKING INIT RESULT = " + ttsInited);
+            return ttsInited;
+        }
       
       
     </insert>

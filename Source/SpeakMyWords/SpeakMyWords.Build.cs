@@ -72,7 +72,7 @@ public class SpeakMyWords : ModuleRules
 			);
 
         //Load the Android UPL file for the Speak My Words UE4 Plugin for Android Platform.
-        //if (Target.Platform == UnrealTargetPlatform.Android)
+        if (Target.Platform == UnrealTargetPlatform.Android)
         {
             Console.WriteLine("Android Modification for Speak My Words UE4 Plugin");
             string PluginPath = Path.Combine(ModuleDirectory, "SpeakMyWords_UPL.xml");
