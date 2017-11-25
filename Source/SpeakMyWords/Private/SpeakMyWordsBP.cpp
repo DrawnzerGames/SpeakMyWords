@@ -21,7 +21,7 @@
 #include "Engine.h"
 
 #if PLATFORM_ANDROID
-#include "../../../Core/Public/Android/AndroidApplication.h"
+#include "../../../ApplicationCore/Public/Android/AndroidApplication.h"
 jmethodID USpeakMyWordsBP::ActivityMethod_InitSpeakMyWords;
 jmethodID USpeakMyWordsBP::ActivityMethod_SpeakThisSentence;
 jmethodID USpeakMyWordsBP::ActivityMethod_SetSpeakingPitch;

@@ -19,7 +19,7 @@
 
 #include "SpeakingActor.h"
 #if PLATFORM_ANDROID
-#include "../../../Core/Public/Android/AndroidApplication.h"
+#include "../../../ApplicationCore/Public/Android/AndroidApplication.h"
 #endif
 
 ASpeakingActor::ASpeakingActor()
