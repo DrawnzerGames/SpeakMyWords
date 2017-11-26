@@ -7,6 +7,10 @@ The **Speak My Words** plugin lets you integrate out-of-the-box [Text To Speech 
 * **Binaries compiled for:** Unreal Engine 4.18.1
 * **Required Unreal Engine 4.18 or above.**
 
+
+
+ [Community Forum Page For Speak My Words](https://forums.unrealengine.com/community/community-content-tools-and-tutorials/1391632-speak-my-words-android-s-text-to-speech-for-ue4)
+
 ## Features
 * This smart plugin will speak whatever you want to speak.
 * Set the speech rate for whatever you want to speak.
