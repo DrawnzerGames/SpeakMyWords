@@ -1,7 +1,7 @@
 ![Splash](Resources/Splash.png)
 
 # Speak My Words
-The **Speak My Words** plugin lets you integrate out-of-the-box [Text To Speech API](https://developer.android.com/reference/android/speech/tts/TextToSpeech.html) for Android into your [Unreal Engine 4](http://www.unrealengine.com) project.
+The **Speak My Words** plugin lets you integrate out-of-the-box [Text To Speech API](https://developer.android.com/reference/android/speech/tts/TextToSpeech.html) for Android into your [Unreal Engine 4](https://www.unrealengine.com/en-US/what-is-unreal-engine-4) project.
 
 * **Current version:** 1.0
 * **Binaries compiled for:** Unreal Engine 4.18.1
